@@ -8,6 +8,7 @@
 
 #pragma once
 #include "SDL/SDL.h"
+#include "SDL/SDL_TTF.h"
 
 // Vector2 struct just stores x/y coordinates
 // (for now)
@@ -28,6 +29,8 @@ public:
 	void RunLoop();
 	// Shutdown the game
 	void Shutdown();
+	// Keeps the score
+	void Score();
 private:
 	// Helper functions for the game loop
 	void ProcessInput();
@@ -42,19 +45,13 @@ private:
 	Uint32 mTicksCount;
 	// Game should continue to run
 	bool mIsRunning;
-	
-	// Paddle1 specific
+	int score;
+
+	// Pong specific
 	// Direction of paddle
 	int mPaddleDir;
 	// Position of paddle
 	Vector2 mPaddlePos;
-		
-	// Paddle2 specific
-	// Direction of paddle
-	int mPaddle2Dir;
-	// Position of paddle
-	Vector2 mPaddle2Pos;
-
 	// Position of ball
 	Vector2 mBallPos;
 	// Velocity of ball
@@ -63,7 +60,6 @@ private:
 	Vector2 mBallPos2;
 	// Velocity of ball2
 	Vector2 mBallVel2;
-
 	// Position of ball3
 	Vector2 mBallPos3;
 	// Velocity of ball3
