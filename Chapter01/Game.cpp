@@ -93,7 +93,7 @@ void Game::Score() {
 
 	SDL_Log("Placar: %d", score);
 	
-	if (score == 0) {
+	if (score == 1) {
 
 		mIsRunning = false;
 
@@ -212,6 +212,7 @@ void Game::UpdateGame()
 	// Did the ball go off the screen? (if so, end game)
 	else if (mBallPos.x <= 0.0f)
 	{
+		mBallVel.x *= -1.0f;
 		Score();
 	}
 
@@ -266,6 +267,7 @@ void Game::UpdateGame()
 	// Did the ball go off the screen? (if so, end game)
 	else if (mBallPos2.x <= 0.0f)
 	{
+		mBallVel2.x *= -1.0f;
 		Score();
 	}
 
@@ -320,6 +322,7 @@ void Game::UpdateGame()
 	// Did the ball go off the screen? (if so, end game)
 	else if (mBallPos3.x <= 0.0f)
 	{
+		mBallVel3.x *= -1.0f;
 		Score();
 	}
 
@@ -438,6 +441,19 @@ void Game::GenerateOutput()
 		thickness
 	};
 	SDL_RenderFillRect(mRenderer, &ball3);
+
+	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+	
+	for (int i = 0; i < score; i++) {
+		SDL_Rect life{
+		static_cast<int>(500 + i*30),
+		static_cast<int>(50),
+		15,
+		80
+		};
+		SDL_RenderFillRect(mRenderer, &life);
+	}
+	
 
 	// Swap front buffer and back buffer
 
